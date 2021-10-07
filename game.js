@@ -23,6 +23,8 @@ function update() {
     ctx.beginPath();
     ctx.arc(gameCan.width/3,birb.y,20,0,Math.PI*2);
     ctx.fill();
+    ctx.fillStyle = "rgba(0,255,0,1)";
+    ctx.fillRect(0,0,gameCan.width,gameCan.height)
     if (started){
         birb.y += birb.fallSpd;
         birb.fallSpd += 1;
