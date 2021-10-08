@@ -1,3 +1,4 @@
+// please don't change/add/remove anything
 var gameCan = document.getElementById("gameCanvas"); 
 var ctx = gameCan.getContext("2d");
 var started = false;
@@ -6,6 +7,15 @@ var birb = {
     fallSpd: -10,
     alive: true
 }
+class obstacle {
+    constructor(x, y, tight) {
+        this.x = x;
+        this.y = y;
+        this.tight = tight;
+    }
+}
+var obstacles = new Array()
+obstacles.push(new obstacle(0,400,200));
 gameCan.addEventListener("click",canvasClick);
 setInterval(update,20);
 function canvasClick() {
@@ -24,15 +34,21 @@ function update() {
     ctx.arc(gameCan.width/3,birb.y,20,0,Math.PI*2);
     ctx.fill();
     ctx.fillStyle = "rgba(0,255,0,1)";
-    ctx.fillRect(0,0,gameCan.width,gameCan.height)
+    for (let i = 0;i<obstacles.length;i++){
+        ctx.fillRect(gameCan.width-(obstacles[i].x+15),0,gameCan.width-(obstacles.x-15),obstacles[i].y+obstacles[i].tight/2)
+        ctx.fillRect(gameCan.width-(obstacles[i].x+15),gameCan.height,gameCan.width-(obstacles.x-15),obstacles[i].y-obstacles[i].tight/2)
+    }
     if (started){
         birb.y += birb.fallSpd;
         birb.fallSpd += 1;
         if (birb.fallSpd > 20){
             birb.fallSpd = 20
         }
-        if (birb.y<60) or (birb.y>gameCan.width-60);{
+        if (birb.y<60,birb.y>gameCan.width-60){
             birb.alive = false;
+        }
+        for (let i = 0;i<obstacles.length;i++){
+            obstacles[i].x += 1
         }
     }else{
         ctx.fillStyle = "rgba(0,0,0,0.25)"
