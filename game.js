@@ -48,8 +48,8 @@ function update() {
     if (started){
         birb.y += birb.fallSpd;
         birb.fallSpd += 0.3;
-        if (birb.fallSpd > 10){
-            birb.fallSpd = 10
+        if (birb.fallSpd > 14){
+            birb.fallSpd = 14
         }
         if (birb.y<60,birb.y>gameCan.width-60){
             birb.alive = false;
